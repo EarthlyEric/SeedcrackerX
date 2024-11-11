@@ -50,7 +50,7 @@ public class FinderQueue {
             });
         });
     }
-
+    /**
     public void renderFinders(Matrix4f matrix4f, Camera camera) {
         if (Config.get().render == Config.RenderType.OFF) return;
 
@@ -61,7 +61,7 @@ public class FinderQueue {
         if (Config.get().render == Config.RenderType.XRAY) {
             RenderSystem.disableDepthTest();
         }
-        RenderSystem.setShader(GameRenderer::getPositionColorProgram);
+        // RenderSystem.setShader(GameRenderer::getPositionColorProgram);
         RenderSystem.enableBlend();
         RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ZERO);
         RenderSystem.lineWidth(2.0f);
@@ -83,9 +83,9 @@ public class FinderQueue {
         RenderSystem.enableDepthTest();
         RenderSystem.disableBlend();
 
-        RenderSystem.applyModelViewMatrix();
+        // RenderSystem.applyModelViewMatrix();
     }
-
+    */
     public List<Finder.Type> getActiveFinderTypes() {
         return Arrays.stream(Finder.Type.values())
                 .filter(type -> type.enabled.get())
@@ -97,3 +97,4 @@ public class FinderQueue {
     }
 
 }
+
