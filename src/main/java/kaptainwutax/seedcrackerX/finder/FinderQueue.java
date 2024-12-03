@@ -3,6 +3,8 @@ package kaptainwutax.seedcrackerX.finder;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import kaptainwutax.seedcrackerX.config.Config;
+import net.minecraft.client.gl.ShaderProgram;
+import net.minecraft.client.gl.ShaderProgramKeys;
 import net.minecraft.client.render.*;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
@@ -50,18 +52,15 @@ public class FinderQueue {
             });
         });
     }
-    /**
     public void renderFinders(Matrix4f matrix4f, Camera camera) {
         if (Config.get().render == Config.RenderType.OFF) return;
 
         Vec3d camPos = camera.getPos();
 
-
-
         if (Config.get().render == Config.RenderType.XRAY) {
             RenderSystem.disableDepthTest();
         }
-        RenderSystem.setShader(GameRenderer::getPositionColorProgram);
+        RenderSystem.setShader(ShaderProgramKeys.POSITION);
         RenderSystem.enableBlend();
         RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ZERO);
         RenderSystem.lineWidth(2.0f);
@@ -82,10 +81,9 @@ public class FinderQueue {
 
         RenderSystem.enableDepthTest();
         RenderSystem.disableBlend();
-
-        RenderSystem.applyModelViewMatrix();
+        RenderSystem.assertOnRenderThread();
     }
-    */
+
     public List<Finder.Type> getActiveFinderTypes() {
         return Arrays.stream(Finder.Type.values())
                 .filter(type -> type.enabled.get())
